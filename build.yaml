@@ -1,0 +1,5 @@
+include:
+  - board: bdkb40
+    snippet: studio-rpc-usb-uart
+    artifact-name: bdkb40
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
