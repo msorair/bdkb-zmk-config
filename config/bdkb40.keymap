@@ -1,1 +1,140 @@
-./boards/arm/bdkb40/bdkb40.keymap
+// This file was generated from a template. Edit it to match your keyboard.
+// See https://zmk.dev/docs/development/hardware-integration/new-shield for more instructions.
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
+
+#define CORE    0
+#define ORBIT   1
+#define NEBULA  2
+#define HORIZON 3
+#define LOCK    4
+
+/ {
+    // Define a default keymap here.
+    // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
+
+    behaviors {
+        lock_layer_on: lock_layer_on {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Lock Layer On";
+            toggle-mode = "on";
+            locking;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        tabc {
+            bindings = <&kp LC(INSERT)>;
+            key-positions = <12 26>;
+        };
+
+        tabv {
+            bindings = <&kp LS(INSERT)>;
+            key-positions = <12 27>;
+        };
+    };
+
+    macros {
+        del_to_begin: m1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(HOME) &kp DELETE>;
+            label = "M1";
+        };
+
+        del_to_end: del_to_end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(END) &kp DELETE>;
+            label = "DEL_TO_END";
+        };
+
+        add_new_line: add_new_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END &kp ENTER>;
+            label = "ADD_NEW_LINE";
+        };
+
+        lock_and_soft_off: lock_and_soft_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&lock_layer_on LOCK &soft_off>;
+            label = "LOCK_AND_SOFT_OFF";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        CORE {
+            display-name = "Default Layer";
+
+            // ------------------------------------------------------------------------------------------------------------
+            // | ESC |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |BSPC |
+            // |  CAPS |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |    \    |
+            // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
+            // |  CTRL | ALT | LMETA |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
+
+            bindings = <
+&kp ESC     &kp Q     &kp W      &kp E      &kp R        &kp T      &kp Y      &kp U     &kp I      &kp O    &kp P        &kp BSLH
+&lt 2 TAB   &kp A     &kp S      &kp D      &kp F        &kp G      &kp H      &kp J     &kp K      &kp L    &lt 3 ENTER
+&kp LSHIFT  &kp Z     &kp X      &kp C      &kp V        &kp B      &kp N      &kp M     &kp COMMA  &kp DOT  &kp RSHIFT
+&kp LCTRL   &kp LALT  &kp LMETA  &kp SPACE  &lt 1 SPACE  &kp RCTRL  &kp RMETA  &kp RALT
+            >;
+        };
+
+        ORBIT {
+            display-name = "ORBIT";
+
+            // ------------------------------------------------------------------------------------------------------------
+            // | ESC |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |BSPC |
+            // |  CAPS |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |    \    |
+            // |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  | SHIFT |
+            // |  CTRL | ALT | LMETA |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
+
+            bindings = <
+&kp GRAVE  &kp N1  &kp N2  &kp N3          &kp N4     &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
+&none      &none   &none   &kp DEL         &kp RIGHT  &none     &kp BSPC  &none     &kp UP    &none      &none
+&none      &none   &none   &none           &none      &kp LEFT  &none     &kp LEFT  &kp DOWN  &kp RIGHT  &none
+&none      &none   &none   &kp LEFT_SHIFT  &none      &none     &none     &none
+            >;
+        };
+
+        NEBULA {
+            bindings = <
+&none  &none     &none  &kp END    &none      &none           &none           &none            &kp MINUS  &kp EQUAL     &kp UP    &none
+&none  &kp HOME  &none  &kp DEL    &kp RIGHT  &none           &kp BSPC        &kp LBKT         &kp RBKT   &kp SEMI      &kp APOS
+&none  &none     &none  &kp CAPS   &none      &kp LEFT        &kp DOWN        &kp C_MENU       &none      &mmv MOVE_UP  &kp FSLH
+&none  &none     &none  &kp LSHFT  &mkp LCLK  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
+            >;
+        };
+
+        HORIZON {
+            display-name = "HORIZON";
+            bindings = <
+&none         &kp F1          &kp F2       &kp F3        &kp F4          &kp F5        &kp F6           &kp F7      &kp F8     &kp F9     &kp F10     &none
+&none         &studio_unlock  &none        &none         &none           &kp C_PREV    &kp C_PP         &kp C_NEXT  &kp F11    &kp F12    &none
+&none         &bt BT_PRV      &bt BT_NXT   &bt BT_CLR    &bt BT_CLR_ALL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE  &kp PG_DN  &kp PG_UP  &kp INSERT
+&out OUT_USB  &sys_reset      &bootloader  &out OUT_BLE  &studio_unlock  &out OUT_TOG  &kp BSPC         &kp DEL
+            >;
+        };
+
+        LOCK {
+            display-name = "LOCK";
+            bindings = <
+&none  &none     &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+&none  &to CORE  &none  &none  &none  &none  &none  &none  &none  &none  &none
+&none  &none     &none  &none  &none  &none  &none  &none  &none  &none  &none
+&none  &none     &none  &none  &none  &none  &none  &none
+            >;
+        };
+    };
+};
