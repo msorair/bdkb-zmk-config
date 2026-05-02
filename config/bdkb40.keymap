@@ -25,6 +25,13 @@
             toggle-mode = "on";
             locking;
         };
+
+        td_boot: td_boot {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_BOOT";
+            #binding-cells = <0>;
+            bindings = <&none>, <&bootloader>;
+        };
     };
 
     combos {
@@ -101,10 +108,10 @@
             // |  CTRL | ALT | LMETA |   SPACE   |     SPACE     | Raise |RMETA|  CTRL |
 
             bindings = <
-&kp GRAVE  &kp N1  &kp N2  &kp N3          &kp N4     &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
-&none      &none   &none   &kp DEL         &kp RIGHT  &none     &kp BSPC  &none     &kp UP    &none      &none
-&none      &none   &none   &none           &none      &kp LEFT  &none     &kp LEFT  &kp DOWN  &kp RIGHT  &none
-&none      &none   &none   &kp LEFT_SHIFT  &none      &none     &none     &none
+&kp GRAVE  &kp N1  &kp N2  &kp N3          &kp N4         &kp N5        &kp N6        &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
+&none      &none   &none   &kp LC(DEL)     &kp LC(RIGHT)  &none         &kp LC(BSPC)  &none     &kp UP    &none      &none
+&none      &none   &none   &none           &none          &kp LC(LEFT)  &none         &kp LEFT  &kp DOWN  &kp RIGHT  &none
+&none      &none   &none   &kp LEFT_SHIFT  &none          &none         &none         &none
             >;
         };
 
@@ -120,10 +127,10 @@
         HORIZON {
             display-name = "HORIZON";
             bindings = <
-&none         &kp F1          &kp F2       &kp F3        &kp F4          &kp F5        &kp F6           &kp F7      &kp F8     &kp F9     &kp F10     &none
-&none         &studio_unlock  &none        &none         &none           &kp C_PREV    &kp C_PP         &kp C_NEXT  &kp F11    &kp F12    &none
-&none         &bt BT_PRV      &bt BT_NXT   &bt BT_CLR    &bt BT_CLR_ALL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE  &kp PG_DN  &kp PG_UP  &kp INSERT
-&out OUT_USB  &sys_reset      &bootloader  &out OUT_BLE  &studio_unlock  &out OUT_TOG  &kp BSPC         &kp DEL
+&none         &kp F1          &kp F2           &kp F3        &kp F4          &kp F5        &kp F6           &kp F7      &kp F8     &kp F9     &kp F10     &lock_and_soft_off
+&kp CAPSLOCK  &studio_unlock  &kp PRINTSCREEN  &none         &none           &kp C_PREV    &kp C_PP         &kp C_NEXT  &kp F11    &kp F12    &none
+&none         &bt BT_PRV      &bt BT_NXT       &bt BT_CLR    &bt BT_CLR_ALL  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp K_MUTE  &kp PG_DN  &kp PG_UP  &kp INSERT
+&out OUT_USB  &sys_reset      &td_boot         &out OUT_BLE  &studio_unlock  &out OUT_TOG  &kp BSPC         &kp DEL
             >;
         };
 
