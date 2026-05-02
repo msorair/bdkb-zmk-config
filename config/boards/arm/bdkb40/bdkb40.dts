@@ -79,6 +79,9 @@
             , <&gpio0  3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // r2
             , <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // r3
             ;
+
+        debounce-press-ms = <10>;
+        debounce-release-ms = <10>;
     };
 
     default_transform: default_transform {
