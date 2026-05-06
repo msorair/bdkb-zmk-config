@@ -34,19 +34,7 @@
         };
     };
 
-    combos {
-        compatible = "zmk,combos";
-
-        tabc {
-            bindings = <&kp LC(INSERT)>;
-            key-positions = <12 26>;
-        };
-
-        tabv {
-            bindings = <&kp LS(INSERT)>;
-            key-positions = <12 27>;
-        };
-    };
+    combos { compatible = "zmk,combos"; };
 
     macros {
         del_to_begin: m1 {
@@ -117,10 +105,10 @@
 
         NEBULA {
             bindings = <
-&none  &none     &none  &kp END    &none      &none           &none           &none            &kp MINUS  &kp EQUAL     &kp UP    &none
-&none  &kp HOME  &none  &kp DEL    &kp RIGHT  &none           &kp BSPC        &kp LBKT         &kp RBKT   &kp SEMI      &kp APOS
-&none  &none     &none  &kp CAPS   &none      &kp LEFT        &kp DOWN        &kp C_MENU       &none      &mmv MOVE_UP  &kp FSLH
-&none  &none     &none  &kp LSHFT  &mkp LCLK  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
+&none  &none     &none  &kp END         &none           &none           &none           &none            &kp MINUS  &kp EQUAL     &kp UP    &none
+&none  &kp HOME  &none  &kp DEL         &kp RIGHT       &none           &kp BSPC        &kp LBKT         &kp RBKT   &kp SEMI      &kp APOS
+&none  &none     &none  &kp LC(INSERT)  &kp LS(INSERT)  &kp LEFT        &kp DOWN        &kp C_MENU       &none      &mmv MOVE_UP  &kp FSLH
+&none  &none     &none  &kp LSHFT       &mkp LCLK       &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT
             >;
         };
 
@@ -145,3 +133,4 @@
         };
     };
 };
+
